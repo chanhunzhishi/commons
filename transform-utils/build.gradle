@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group 'cn.chanhunzhishi'
+version '1.0-SNAPSHOT'
+apply plugin: 'maven-publish'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            //指定group/artifact/version信息，可以不填。默认使用项目group/name/version作为groupId/artifactId/version
+            groupId project.group
+            artifactId project.name
+            version project.version
+            //如果是war包填写components.web，如果是jar包填写components.java
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            //指定要上传的maven私服仓库
+            url = "http://www.chanhunzhishi.cn:9069/repository/nexus-releases/"
+            if(version.endsWith("-SNAPSHOT")) {
+                url ="http://www.chanhunzhishi.cn:9069/repository/nexus-snapshots/"
+            }
+            //认证用户和密码
+            credentials {
+                //引入外部配置文件
+                Properties props = new Properties()
+                props.load(new FileInputStream(file("../authinfo.properties")))
+                username props.getProperty('MAVEN_USERNAME')
+                password props.get('MAVEN_PASSWORD')
+            }
+        }
+    }
+}
