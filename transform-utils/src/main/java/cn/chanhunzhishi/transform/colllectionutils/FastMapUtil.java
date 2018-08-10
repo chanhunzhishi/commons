@@ -1,7 +1,7 @@
 package cn.chanhunzhishi.transform.colllectionutils;
 
 
-import cn.chanhunzhishi.transform.objectutils.FastObjectUtil;
+import cn.chanhunzhishi.transform.objectutils.BaseObjectUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -146,7 +146,7 @@ public class FastMapUtil {
 			}
 
 			//判断该属性的类型，递归调用对应的Map或者Object方法
-			if (FastObjectUtil.checkBaseOrPackageType(invoke.getClass())) {
+			if (BaseObjectUtil.checkBaseOrPackageType(invoke.getClass())) {
 				newMap.put(fieldName, invoke);
 			} else {
 				if (Map.class.isAssignableFrom(invoke.getClass())) {
@@ -166,7 +166,7 @@ public class FastMapUtil {
 	private static Map<Object, Object> makeFlatMapWithMap(Map<Object, Object> map, Map<Object, Object> newMap) throws Exception {
 		for (Entry<Object, Object> next : map.entrySet()) {
 			Object value = next.getValue();
-			if (FastObjectUtil.checkBaseOrPackageType(value.getClass())) {
+			if (BaseObjectUtil.checkBaseOrPackageType(value.getClass())) {
 				newMap.put(next.getKey(), value);
 			} else {
 				if (Map.class.isAssignableFrom(value.getClass())) {
