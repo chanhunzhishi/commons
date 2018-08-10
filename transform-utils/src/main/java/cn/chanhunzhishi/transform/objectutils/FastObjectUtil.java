@@ -9,7 +9,7 @@ import java.util.Map;
 public class FastObjectUtil {
 	/**
 	 * 将结果为null的 String 属性设置为 ""空
-	 *
+	 * 将会获取对象的所有方法和
 	 */
 	private static <T> T fillNull(T obj) {
 		Class<?> aClass = obj.getClass();
