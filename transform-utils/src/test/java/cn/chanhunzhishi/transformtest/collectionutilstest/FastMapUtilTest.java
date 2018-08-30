@@ -1,6 +1,7 @@
 package cn.chanhunzhishi.transformtest.collectionutilstest;
 
 import cn.chanhunzhishi.transform.colllectionutils.FastMapUtil;
+import cn.chanhunzhishi.transform.objectutils.FastObjectUtil;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -18,7 +19,7 @@ public class FastMapUtilTest {
 		map.put("object", map_obj);
 		map.put("map",Collections.singletonMap("map_key1","map_key2"));
 		try {
-			TestObject testObject = FastMapUtil.fillObject(TestObject.class, map);
+			TestObject testObject = FastObjectUtil.fillObject(TestObject.class, map);
 			System.out.println(testObject);
 		} catch (Exception e) {
 			e.printStackTrace();

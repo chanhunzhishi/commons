@@ -4,8 +4,10 @@ import cn.chanhunzhishi.transform.colllectionutils.FastCollections;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class FastCollectionsTest {
 	/**
@@ -37,6 +39,16 @@ public class FastCollectionsTest {
 
 		Map<String, TestObject> stringStringMap = FastCollections.listToMap(list, TestObject::getValue1);
 		stringStringMap.forEach((k, v) -> System.out.println("key:" + k + " value:" + v));
+	}
+
+	@Test
+	public void splitMapTest(){
+		Set<TestObject> list = new HashSet<>();
+		for (int i = 0; i < 100; i++) {
+			list.add(new TestObject("Value1_"+i,"Value2_"+i));
+		}
+		List<Set<TestObject>> collections = FastCollections.splitCollection(list, 5);
+		System.out.println(collections);
 	}
 
 

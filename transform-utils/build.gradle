@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'cn.chanhunzhishi'
-version '1.0-SNAPSHOT'
+version '1.1-SNAPSHOT'
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
 
@@ -16,7 +16,11 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
-
+allprojects {
+    repositories {
+        maven{ url 'https://mvn.chanhunzhishi.cn/repository/maven-public/'}
+    }
+}
 publishing {
     publications {
         maven(MavenPublication) {
@@ -31,9 +35,9 @@ publishing {
     repositories {
         maven {
             //指定要上传的maven私服仓库
-            url = "http://www.chanhunzhishi.cn:9069/repository/nexus-releases/"
+            url = "https://mvn.chanhunzhishi.cn/repository/releases/"
             if(version.endsWith("-SNAPSHOT")) {
-                url ="http://www.chanhunzhishi.cn:9069/repository/nexus-snapshots/"
+                url ="https://mvn.chanhunzhishi.cn/repository/snapshots/"
             }
             //认证用户和密码
             credentials {

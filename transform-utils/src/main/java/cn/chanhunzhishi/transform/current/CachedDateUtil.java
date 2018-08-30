@@ -79,7 +79,7 @@ public class CachedDateUtil {
 	}
 
 	/**
-	 * 存储缓存格式化日期的
+	 * 存储缓存格式化日期
 	 */
 	private class CachedDateBean {
 		private CachedDateBean(long lastTime, long maxCachedMills, SimpleDateFormat dateFormat) {

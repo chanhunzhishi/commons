@@ -12,7 +12,7 @@ public class CachedDateUtilTest {
 	public void simpleTimeTest() {
 		long l = System.currentTimeMillis();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		for (int i = 0; i < 1000000; i++) {
+		for (int i = 0; i < 100000000; i++) {
 			String format = simpleDateFormat.format(System.currentTimeMillis());
 		}
 		System.out.println(System.currentTimeMillis() - l);
@@ -21,10 +21,17 @@ public class CachedDateUtilTest {
 	@Test
 	public void cachedTestTime() {
 		long l = System.currentTimeMillis();
-		for (int i = 0; i < 1000000; i++) {
+		String[] array = new String[100000000];
+		for (int i = 0; i < 100000000; i++) {
 			String format = CachedDateUtil.getInstance().getCachedDate(CachedDateUtil.DateScale.FULL_MILLIS_DATE_TIME.getPattern());
+			array[i] = format;
 		}
 		System.out.println(System.currentTimeMillis() - l);
+		for(int i=0;i<100000000;i++){
+			if(i%10000000==0){
+				System.out.println(array[i]);
+			}
+		}
 	}
 	@Test
 	public void addCached(){
