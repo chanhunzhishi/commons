@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'cn.chanhunzhishi'
+group 'cn.chanhunzhishi.commons'
 version '1.1-SNAPSHOT'
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
